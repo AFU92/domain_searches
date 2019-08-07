@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"net/http"
 
+	"github.com/AFU92/domain_searches/config"
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 )
@@ -16,7 +17,11 @@ func main() {
 	r.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		w.Write([]byte("Domain searches API"))
 	})
+
+	config.CreateDatabaseObject()
+
 	fmt.Println("Running server at: http://localhost:4001")
 
 	http.ListenAndServe(":4001", r)
+
 }
